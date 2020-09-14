@@ -1,10 +1,14 @@
 set -o vi
 
 alias sc='cat ~/.ssh/config'
-
-complete -f -d -W "$(grep '[Hh]ost ' ~/.ssh/config | grep -v '*' | awk '{print $2}')" ssh scp
+alias gs='git status'
+alias gl='git log --all --decorate --oneline --graph'
+alias gll='git log'
+alias c='clear'
 
 [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
+
+complete -f -d -W "$(grep '[Hh]ost ' ~/.ssh/config | grep -v '*' | awk '{print $2}')" ssh scp
 
 # Append to the Bash history file, rather than overwriting it
 shopt -s histappend;
@@ -48,47 +52,47 @@ export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
 
 export CLICOLOR=1
 
-# *** terminal color settings start ***
-
-# set a fancy prompt (non-color, unless we know we "want" color)
-case "$TERM" in
-	xterm-color) color_prompt=yes;;
-esac
-
-# uncomment for a colored prompt, if the terminal has the capability; turned
-# off by default to not distract the user: the focus in a terminal window
-# should be on the output of commands, not on the prompt
-force_color_prompt=yes
-
-if [ -n "$force_color_prompt" ]; then
-	if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-		# We have color support; assume it's compliant with Ecma-48
-		# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-		# a case would tend to support setf rather than setaf.)
-		color_prompt=yes
-	else
-		color_prompt=
-	fi
-fi
-
-if [ "$color_prompt" = yes ]; then
-#	PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-	PS1='${debian_chroot:+($debian_chroot)}\[\e[01;36m\]\u@\h\[\033[00m\]:\[\033[01;36m\]\w\[\033[00m\]\$ '
-else
-	PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-fi
-unset color_prompt force_color_prompt
-
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-	xterm*|rxvt*)
-		PS1="\\[\\e]0;${debian_chroot:+($debian_chroot)}\\u@\\h: \\w\\a\\]$PS1"
-		;;
-	*)
-		;;
-esac
-
-# *** terminal color settings end***
+## *** terminal color settings start ***
+#
+## set a fancy prompt (non-color, unless we know we "want" color)
+#case "$TERM" in
+#	xterm-color) color_prompt=yes;;
+#esac
+#
+## uncomment for a colored prompt, if the terminal has the capability; turned
+## off by default to not distract the user: the focus in a terminal window
+## should be on the output of commands, not on the prompt
+#force_color_prompt=yes
+#
+#if [ -n "$force_color_prompt" ]; then
+#	if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+#		# We have color support; assume it's compliant with Ecma-48
+#		# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+#		# a case would tend to support setf rather than setaf.)
+#		color_prompt=yes
+#	else
+#		color_prompt=
+#	fi
+#fi
+#
+#if [ "$color_prompt" = yes ]; then
+##	PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+#	PS1='${debian_chroot:+($debian_chroot)}\[\e[01;36m\]\u@\h\[\033[00m\]:\[\033[01;36m\]\w\[\033[00m\]\$ '
+#else
+#	PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+#fi
+#unset color_prompt force_color_prompt
+#
+## If this is an xterm set the title to user@host:dir
+#case "$TERM" in
+#	xterm*|rxvt*)
+#		PS1="\\[\\e]0;${debian_chroot:+($debian_chroot)}\\u@\\h: \\w\\a\\]$PS1"
+#		;;
+#	*)
+#		;;
+#esac
+#
+## *** terminal color settings end***
 
 # Enable history expansion with space
 # E.g. typing !!<space> will replace the !! with your last command
@@ -114,4 +118,3 @@ shopt -s cmdhist
 
 # Save and reload the history after each command finishes
 export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
-
