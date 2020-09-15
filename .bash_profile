@@ -6,6 +6,7 @@ alias gl='git log --all --decorate --oneline --graph'
 alias gll='git log'
 alias c='clear'
 
+#[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
 [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
 
 complete -f -d -W "$(grep '[Hh]ost ' ~/.ssh/config | grep -v '*' | awk '{print $2}')" ssh scp
@@ -76,11 +77,12 @@ export CLICOLOR=1
 #fi
 #
 #if [ "$color_prompt" = yes ]; then
-##	PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-#	PS1='${debian_chroot:+($debian_chroot)}\[\e[01;36m\]\u@\h\[\033[00m\]:\[\033[01;36m\]\w\[\033[00m\]\$ '
+###	PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+#	PS1='${debian_chroot:+($debian_chroot)}\[\e[01;94m\]\u@\h\[\033[00m\]:\[\033[01;36m\]\w\[\033[00m\]\$ '
 #else
 #	PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 #fi
+#
 #unset color_prompt force_color_prompt
 #
 ## If this is an xterm set the title to user@host:dir
@@ -118,3 +120,36 @@ shopt -s cmdhist
 
 # Save and reload the history after each command finishes
 export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+
+# Git autocompletion feature at command line
+# https://apple.stackexchange.com/questions/55875/git-auto-complete-for-branches-at-the-command-line
+if [ -f ~/.git-completion.bash ]; then
+  . ~/.git-completion.bash
+fi
+
+#
+# If we're connecting via SSH then the prompt will show the username.
+#
+#if [ -n "$SSH_CONNECTION" ]; then
+#
+#    #
+#    # Remote.
+#    #
+#    export PS1='\[\033[01;31m\]\u\[\033[01;33m\]@\[\033[01;36m\]\h \[\033[01;33m\]\w \[\033[01;35m\]\$ \[\033[00m\]'
+#
+#else
+#
+#    #
+#    # Local.
+#    #
+    export PS1='\[\033[01;36m\]\h \[\033[01;33m\]\w \[\033[01;35m\]\$ \[\033[00m\]'
+#
+#fi
+
+# show colored output for grep, fgrep or egrep commands"
+
+if echo x | grep --color=auto x >/dev/null 2>&1; then
+  alias grep='grep --color=auto'
+  alias fgrep='fgrep --color=auto'
+  alias egrep='egrep --color=auto'
+fi
