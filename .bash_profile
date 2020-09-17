@@ -1,10 +1,18 @@
 set -o vi
 
-alias sc='cat ~/.ssh/config'
-alias gs='git status'
+#alias sc='cat ~/.ssh/config'
+alias gs='git status' 
 alias gl='git log --all --decorate --oneline --graph'
 alias gll='git log'
 alias c='clear'
+alias sv='source Documents/venv/env/bin/activate' #source venv
+alias sb='source ~/.bash_profile' #source bash profile
+alias ob='vim ~/.bash_profile' #open bash profile
+alias ov='vim ~/.vimrc' #open vim config
+alias os='vim ~/.ssh/config' #open ssh config
+alias ..='cd ..'
+alias ...='cd ../..'
+alias c='cheat' #quick access to cheat function
 
 #[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
 [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
@@ -153,3 +161,15 @@ if echo x | grep --color=auto x >/dev/null 2>&1; then
   alias fgrep='fgrep --color=auto'
   alias egrep='egrep --color=auto'
 fi
+
+# Required setting for autojump. 
+# https://github.com/wting/autojump
+[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
+
+# cheat function very similar to tldr.
+# https://news.ycombinator.com/item?id=18898523
+# Example : # cheat tar . This will be similar to 'tldr tar'. Output will help you by providing quick and common usage of the command.
+
+function cheat() {
+      curl cht.sh/$1
+  }
