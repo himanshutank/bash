@@ -1,18 +1,24 @@
 set -o vi
 
 #alias sc='cat ~/.ssh/config'
+alias l='ls'
+alias cp='cp -v'
+alias mv='mv -v'
+alias rmdir='rmdir -v'
 alias gs='git status' 
-alias gl='git log --all --decorate --oneline --graph'
-alias gll='git log'
+alias gl='git log'
+alias gd='git diff'
 alias c='clear'
-alias sv='source Documents/venv/env/bin/activate' #source venv
+alias sv='source Documents/venv/env/bin/activate' #source venv, to enable venv
+alias d='deactivate' #to disable venv
 alias sb='source ~/.bash_profile' #source bash profile
-alias ob='vim ~/.bash_profile' #open bash profile
-alias ov='vim ~/.vimrc' #open vim config
-alias os='vim ~/.ssh/config' #open ssh config
+alias vb='vim ~/.bash_profile' #open bash profile
+alias vv='vim ~/.vimrc' #open vim config
+alias vs='vim ~/.ssh/config' #open ssh config
 alias ..='cd ..'
 alias ...='cd ../..'
-alias c='cheat' #quick access to cheat function
+alias ch='cheat' #quick access to cheat function
+alias bp='bpython' #quick acess to open interactive python terminal app called bpython
 
 #[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
 [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
