@@ -5,20 +5,23 @@ alias l='ls'
 alias cp='cp -v'
 alias mv='mv -v'
 alias rmdir='rmdir -v'
+alias df='colordiff'
 alias gs='git status' 
 alias gl='git log'
 alias gd='git diff'
 alias c='clear'
-alias sv='source Documents/venv/env/bin/activate' #source venv, to enable venv
+alias sv='source ~/Documents/venv/env/bin/activate' #source venv, to enable venv
 alias d='deactivate' #to disable venv
 alias sb='source ~/.bash_profile' #source bash profile
 alias vb='vim ~/.bash_profile' #open bash profile
 alias vv='vim ~/.vimrc' #open vim config
 alias vs='vim ~/.ssh/config' #open ssh config
+alias vd='vim -d' #diff in vim
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ch='cheat' #quick access to cheat function
 alias bp='bpython' #quick acess to open interactive python terminal app called bpython
+alias g='global' #quick alias for global app. This is a best alternate to ctags.
 
 #[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
 [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
@@ -66,6 +69,7 @@ export LESS_TERMCAP_ue=$'\E[0m'           # end underline
 export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
 
 export CLICOLOR=1
+export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
 
 ## *** terminal color settings start ***
 #
@@ -133,7 +137,8 @@ export HISTIGNORE="&:[ ]*:exit:ls:bg:fg:history:clear"
 shopt -s cmdhist
 
 # Save and reload the history after each command finishes
-export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+# Enabling this feature is causing 'globash' feature of global tags 
+#export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
 # Git autocompletion feature at command line
 # https://apple.stackexchange.com/questions/55875/git-auto-complete-for-branches-at-the-command-line
@@ -156,7 +161,9 @@ fi
 #    #
 #    # Local.
 #    #
-    export PS1='\[\033[01;36m\]\h \[\033[01;33m\]\w \[\033[01;35m\]\$ \[\033[00m\]'
+#    export PS1='\[\033[01;234m\]\h \[\033[01;33m\]\w\[\033[01;35m\]:($?)\n$ ' 
+#	export PS1="\t \e[1;33m[\u@\h\e[1;32m][\w]\e[1;33m \n\$ \e[0m";
+	export PS1="\e[1;37m[\t] \e[1;32m[\w]\e[1;33m \$ \e[37m";
 #
 #fi
 
